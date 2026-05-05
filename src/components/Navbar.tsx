@@ -15,7 +15,7 @@ export default function Navbar() {
     <nav className="fixed inset-x-0 top-0 z-30 flex items-center justify-between px-6 py-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
       {/* Brand / Logo */}
       <Link href="/" className="text-2xl font-bold text-primary">
-        Your Name
+        Shawn Macharia
       </Link>
 
       {/* Desktop navigation links */}

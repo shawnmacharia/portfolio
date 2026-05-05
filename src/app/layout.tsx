@@ -1,24 +1,32 @@
-// app/layout.tsx
-import "./globals.css";
-import { ThemeProvider } from "next-themes";
-import Navbar from "@/components/Navbar";
-import ThemeToggle from "@/components/ThemeToggle";
 import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Your Name – Portfolio",
-  description: "Full‑stack developer, designer, nerd‑enthusiast",
+  title: "Shawn Macharia – Data Analyst & BI Specialist",
+  description:
+    "Portfolio of Shawn Macharia, specializing in advanced data visualization, BI dashboards, and financial modeling.",
+  metadataBase: new URL("https://yourdomain.com"),
   openGraph: {
-    title: "Your Name – Portfolio",
-    description: "Full‑stack developer, designer, nerd‑enthusiast",
+    title: "Shawn Macharia – Data & BI Portfolio",
+    description:
+      "Specialist in turning complex data into actionable insights through visual storytelling.",
     images: [
       {
-        url: "/og-image.png", // you can create a custom OG image later
+        url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Portfolio OG Image",
+        alt: "Shawn Macharia Portfolio OG Image",
       },
     ],
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shawn Macharia – Data & BI Portfolio",
+    description: "Specialist in turning complex data into actionable insights.",
+    creator: "",
+    images: ["/opengraph-image.png"],
   },
 };
 
@@ -28,15 +36,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="font-sans">
-      <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
-        {/* ThemeProvider adds a `class` to <html> that toggles dark mode */}
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          <ThemeToggle />
-          {children}
-        </ThemeProvider>
-      </body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }

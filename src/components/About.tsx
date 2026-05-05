@@ -52,7 +52,7 @@ export default function About() {
           custom={2}
         >
           <Image
-            src="/About picture.jpeg"
+            src="/images/about_photo.jpg"
             alt="Shawn Macharia Mugambi"
             width={500}
             height={400}

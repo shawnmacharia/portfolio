@@ -27,7 +27,7 @@ export default function Hero() {
         custom={1}
       >
         <Image
-          src="/Untitled design.png"
+          src="/images/avatar.jpg"
           alt="Shawn Macharia Mugambi"
           width={160}
           height={160}
