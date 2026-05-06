@@ -46,6 +46,19 @@ export default function ProjectCard({ project, index }: Props) {
           ))}
         </div>
 
+        {repo && (
+          <div className="mt-4">
+            <a
+              href={repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-primary underline hover:text-primary/80"
+            >
+              View project repository on GitHub
+            </a>
+          </div>
+        )}
+
         <div className="mt-6 flex flex-wrap gap-3">
           {url && (
             <a
