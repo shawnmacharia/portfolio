@@ -52,7 +52,7 @@ export default function ProjectCard({ project, index }: Props) {
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-primary rounded-md hover:bg-primary/90 transition"
             >
               <FaExternalLinkAlt /> Live
             </a>
@@ -62,9 +62,9 @@ export default function ProjectCard({ project, index }: Props) {
               href={repo}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-primary rounded-md hover:bg-primary/90 transition"
             >
-              <FaGithub /> GitHub
+              <FaGithub /> Repository
             </a>
           )}
         </div>
