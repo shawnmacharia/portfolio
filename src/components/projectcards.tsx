@@ -46,13 +46,13 @@ export default function ProjectCard({ project, index }: Props) {
           ))}
         </div>
 
-        <div className="mt-4 flex gap-3">
+        <div className="mt-6 flex flex-wrap gap-3">
           {url && (
             <a
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm text-primary hover:underline"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition"
             >
               <FaExternalLinkAlt /> Live
             </a>
@@ -62,7 +62,7 @@ export default function ProjectCard({ project, index }: Props) {
               href={repo}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm text-primary hover:underline"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition"
             >
               <FaGithub /> GitHub
             </a>
