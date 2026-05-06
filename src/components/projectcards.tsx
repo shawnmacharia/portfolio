@@ -64,7 +64,7 @@ export default function ProjectCard({ project, index }: Props) {
               rel="noopener noreferrer"
               className="flex items-center gap-1 text-sm text-primary hover:underline"
             >
-              <FaGithub /> Code
+              <FaGithub /> GitHub
             </a>
           )}
         </div>
