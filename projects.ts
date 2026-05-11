@@ -25,6 +25,14 @@ export const projects = [
     image: "/images/supermarket-dashboard.png",
     repo: "https://github.com/shawnmacharia/supermarket-sales-dashboard",
   },
+  {
+    title: "Sales Analysis Dashboard",
+    description:
+      "YoY sales and target analysis dashboard providing deep insights across regions, channels, and customers. Track performance metrics, identify growth opportunities, and monitor target achievements with interactive visualizations.",
+    tags: ["Power BI", "Sales Analytics", "Data Analysis"],
+    image: "/images/sales-analysis-dashboard.png",
+    repo: "https://github.com/shawnmacharia/sales-analysis",
+  },
 
   // Add as many as you like …
 ];
