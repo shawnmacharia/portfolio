@@ -10,7 +10,8 @@ interface VercelWindow extends Window {
 }
 
 export default function PowerBiCTA() {
-  const powerBiLink = process.env.NEXT_PUBLIC_POWERBI_LINK || "#";
+  const powerBiLink =
+    "https://1drv.ms/f/c/40f2921e93ea0d94/IgDhPu9Ej3cZRLNtBzfEFRPNAROMBjrjOSl8aMvmY60e_XU?e=G3v9vG";
 
   const handleClick = () => {
     if (
