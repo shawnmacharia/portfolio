@@ -33,6 +33,12 @@ export const projects = [
     image: "/images/sales-analysis-dashboard.png",
     repo: "https://github.com/shawnmacharia/sales-analysis",
   },
-
-  // Add as many as you like …
+  {
+    title: "Market Analysis Dashboard",
+    description:
+      "A dynamic market analysis dashboard that provides real-time insights into market trends, competitor performance, and consumer behavior.",
+    tags: ["Power BI", "Market Research", "Data Analysis"],
+    image: "/images/market-analysis-dashboard.png",
+    repo: "https://github.com/shawnmacharia/market-analysis",
+  },
 ];
