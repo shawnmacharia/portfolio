@@ -41,4 +41,20 @@ export const projects = [
     image: "/images/market-analysis-dashboard.png",
     repo: "https://github.com/shawnmacharia/market-analysis",
   },
+  {
+    title: "Hr Dashboard",
+    description:
+      "A comprehensive human resources dashboard that provides insights into organizational metrics.",
+    tags: ["Power BI", "HR Analytics", "Data Analysis"],
+    image: "/images/hr-dashboard.png",
+    repo: "https://github.com/shawnmacharia/dashboardAnalysis/blob/main/HR%20Dashboard%20Analysis.pbix",
+  },
+  {
+    title: "Employee Hiring History Dashboard",
+    description:
+      "A comprehensive employee hiring history dashboard that provides insights into recruitment metrics and candidate journey analytics.",
+    tags: ["Power BI", "HR Analytics", "Data Analysis"],
+    image: "/images/employee-hiring-history.png",
+    repo: "https://github.com/shawnmacharia/employee-hiring-history",
+  },
 ];
