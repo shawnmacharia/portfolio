@@ -1,18 +1,25 @@
+// src/app/page.tsx
+import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
+import TechArsenal from "@/components/TechArsenal";
+import FeaturedProject from "@/components/FeaturedProject";
 import Projects from "@/components/projo";
+import Experience from "@/components/Experience";
+import About from "@/components/About";
 import Contact from "@/components/Contact";
-import PowerBiCTA from "@/components/PowerBiCTA";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <>
+      <Navbar />
       <Hero />
-      <About />
+      <TechArsenal />
+      <FeaturedProject />
       <Projects />
+      <Experience />
+      <About />
       <Contact />
-      <PowerBiCTA />
       <Footer />
     </>
   );

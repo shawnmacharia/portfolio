@@ -1,4 +1,6 @@
-// data/projects.ts
+// projects.ts
+export type ProjectCategory = "engineering" | "analytics";
+
 export type Project = {
   title: string;
   description: string;
@@ -6,9 +8,19 @@ export type Project = {
   image: string; // path relative to /public
   url?: string; // live demo link (optional)
   repo?: string; // source code link (optional)
+  category: ProjectCategory;
 };
 
-export const projects = [
+export const projects: Project[] = [
+  {
+    title: "EPRA Fuel Intelligence Pipeline",
+    description:
+      "An automated end-to-end data pipeline that extracts monthly petroleum prices, validates staging in PostgreSQL, orchestrates workflows via Airflow, loads data into BigQuery, transforms with dbt, and visualizes trends in Power BI.",
+    tags: ["Python", "Airflow", "PostgreSQL", "BigQuery", "dbt"],
+    image: "/images/epra-pipeline.png",
+    repo: "https://github.com/shawnmacharia/epra-fuel-pipeline",
+    category: "engineering",
+  },
   {
     title: "Telecom CRM",
     description:
@@ -16,14 +28,16 @@ export const projects = [
     tags: ["Power BI", "Data Analysis", "Business Intelligence"],
     image: "/images/crm-screenshot.png",
     repo: "https://github.com/shawnmacharia/telecom-crm",
+    category: "analytics",
   },
   {
     title: "Supermarket Sales Dashboard",
     description:
-      "A comprehensive retail performance dashboard that transforms raw transaction data into actionable business intelligence. Monitor revenue health, customer behavior, and inventory efficiency in real-time.",
+      "A comprehensive retail performance dashboard that transforms raw transaction data into actionable business intelligence. Monitor revenue health, customer behavior, and inventory efficiency in real‑time.",
     tags: ["Power BI", "Data Analysis", "Retail Analytics"],
     image: "/images/supermarket-dashboard.png",
     repo: "https://github.com/shawnmacharia/supermarket-sales-dashboard",
+    category: "analytics",
   },
   {
     title: "Sales Analysis Dashboard",
@@ -32,22 +46,25 @@ export const projects = [
     tags: ["Power BI", "Sales Analytics", "Data Analysis"],
     image: "/images/sales-analysis-dashboard.png",
     repo: "https://github.com/shawnmacharia/sales-analysis",
+    category: "analytics",
   },
   {
     title: "Market Analysis Dashboard",
     description:
-      "A dynamic market analysis dashboard that provides real-time insights into market trends, competitor performance, and consumer behavior.",
+      "A dynamic market analysis dashboard that provides real‑time insights into market trends, competitor performance, and consumer behavior.",
     tags: ["Power BI", "Market Research", "Data Analysis"],
     image: "/images/market-analysis-dashboard.png",
     repo: "https://github.com/shawnmacharia/market-analysis",
+    category: "analytics",
   },
   {
-    title: "Hr Dashboard",
+    title: "HR Dashboard",
     description:
       "A comprehensive human resources dashboard that provides insights into organizational metrics.",
     tags: ["Power BI", "HR Analytics", "Data Analysis"],
     image: "/images/hr-dashboard.png",
     repo: "https://github.com/shawnmacharia/dashboardAnalysis/blob/main/HR%20Dashboard%20Analysis.pbix",
+    category: "analytics",
   },
   {
     title: "Employee Hiring History Dashboard",
@@ -56,5 +73,6 @@ export const projects = [
     tags: ["Power BI", "HR Analytics", "Data Analysis"],
     image: "/images/employee-hiring-history.png",
     repo: "https://github.com/shawnmacharia/employee-hiring-history",
+    category: "analytics",
   },
 ];

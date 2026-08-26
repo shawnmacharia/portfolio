@@ -1,119 +1,95 @@
-// components/Contact.tsx
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-
-type FormState = {
-  name: string;
-  email: string;
-  message: string;
-};
+import { FaEnvelope, FaLinkedin } from "react-icons/fa";
 
 export default function Contact() {
-  const [form, setForm] = useState<FormState>({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle",
-  );
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-
-    const endpoint = "https://formspree.io/f/mkoywlwq";
-
-    try {
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-
-      if (res.ok) {
-        setStatus("sent");
-        setForm({ name: "", email: "", message: "" });
-      } else {
-        setStatus("error");
-      }
-    } catch (err) {
-      console.error(err);
-      setStatus("error");
-    }
-  };
-
   return (
-    <section
-      id="contact"
-      className="py-20 bg-faint dark:bg-gray-800 px-6 md:px-12"
-    >
-      <div className="max-w-xl mx-auto">
-        <motion.h2
-          className="text-3xl font-bold text-center text-primary mb-8"
+    <section id="contact" className="py-20 px-6 md:px-12 bg-white dark:bg-gray-900 scroll-mt-24">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-3xl font-bold text-center text-primary mb-4">
+          Get In Touch
+        </h2>
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-8">
+          Have a question, data engineering opportunity, or project in mind? Reach out directly.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10 text-sm">
+          <a
+            href="mailto:shawnmugambi1@gmail.com"
+            className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary transition"
+          >
+            <FaEnvelope className="text-primary" size={16} />
+            <span className="underline">shawnmugambi1@gmail.com</span>
+          </a>
+
+          <a
+            href="https://linkedin.com/in/shawnmugambi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary transition"
+          >
+            <FaLinkedin className="text-primary" size={16} />
+            <span className="underline">LinkedIn Profile</span>
+          </a>
+        </div>
+
+        <motion.form
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="space-y-4 bg-faint dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-sm"
         >
-          Get in Touch
-        </motion.h2>
+          <div>
+            <label htmlFor="name" className="sr-only">
+              Name
+            </label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              required
+              className="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
 
-        <form onSubmit={handleSubmit} className="grid gap-6">
-          <input
-            type="text"
-            name="name"
-            placeholder="Your name"
-            required
-            className="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 focus:outline-primary"
-            value={form.name}
-            onChange={handleChange}
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="you@example.com"
-            required
-            className="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 focus:outline-primary"
-            value={form.email}
-            onChange={handleChange}
-          />
-          <textarea
-            name="message"
-            rows={5}
-            placeholder="Your message"
-            required
-            className="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 focus:outline-primary resize-none"
-            value={form.message}
-            onChange={handleChange}
-          />
+          <div>
+            <label htmlFor="email" className="sr-only">
+              Email Address
+            </label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              required
+              className="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="message" className="sr-only">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows={5}
+              placeholder="Your Message"
+              required
+              className="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
+            ></textarea>
+          </div>
 
           <button
             type="submit"
-            disabled={status === "sending"}
-            className="px-6 py-3 bg-primary text-white rounded-md hover:bg-primary/90 transition disabled:opacity-70"
+            className="w-full py-3 bg-primary text-white font-medium rounded-md hover:bg-primary/90 transition"
           >
-            {status === "sending" ? "Sending…" : "Send Message"}
+            Send Message
           </button>
-
-          {status === "sent" && (
-            <p className="mt-3 text-green-600">
-              ✅ Message sent! I’ll reply soon.
-            </p>
-          )}
-          {status === "error" && (
-            <p className="mt-3 text-red-600">
-              ❗ Something went wrong. Please try again.
-            </p>
-          )}
-        </form>
+        </motion.form>
       </div>
     </section>
   );
