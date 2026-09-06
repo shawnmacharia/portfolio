@@ -27,8 +27,40 @@ export default function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-      <div className="flex items-center justify-between px-6 py-4">
+    <nav className="fixed inset-x-0 top-0 z-30 border-b border-gray-200 bg-white/90 backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/90">
+      <div className="border-b border-gray-200/80 dark:border-gray-700/80">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-2 text-xs text-gray-600 dark:text-gray-400 md:px-12">
+          <p className="truncate">
+            Currently building data pipelines in Nairobi
+          </p>
+          <div className="flex shrink-0 items-center gap-3">
+            <a
+              href="https://github.com/shawnmacharia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-primary"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://linkedin.com/in/shawnmugambi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-primary"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="mailto:hello@shawnmugambi.dev"
+              className="transition-colors hover:text-primary"
+            >
+              Email
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between px-6 py-4 md:px-12">
         {/* Brand / Logo */}
         <Link href="/" className="text-2xl font-bold text-primary">
           Shawn Macharia

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const heroVariants = {
@@ -14,79 +15,94 @@ const heroVariants = {
 
 export default function Hero() {
   return (
-    <section className="py-24 px-6 md:px-12 bg-faint dark:bg-gray-900 text-center min-h-[85vh] flex items-center justify-center">
-      <div className="max-w-4xl mx-auto">
-        <motion.p
-          className="text-primary font-semibold text-lg mb-2"
-          variants={heroVariants}
-          initial="hidden"
-          animate="visible"
-          custom={1}
-        >
-          Hi, my name is
-        </motion.p>
-
-        <motion.h1
-          className="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight"
-          variants={heroVariants}
-          initial="hidden"
-          animate="visible"
-          custom={2}
-        >
-          Shawn Macharia Mugambi
-        </motion.h1>
-
-        <motion.h2
-          className="text-2xl md:text-4xl font-bold text-gray-700 dark:text-gray-300 mb-6"
-          variants={heroVariants}
-          initial="hidden"
-          animate="visible"
-          custom={3}
-        >
-          Data Analytics Engineer & BI Specialist
-        </motion.h2>
-
-        <motion.p
-          className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400 text-base md:text-lg mb-8 leading-relaxed"
-          variants={heroVariants}
-          initial="hidden"
-          animate="visible"
-          custom={4}
-        >
-          I build production-grade data pipelines, automated financial
-          reconciliation systems, and decision-ready analytical solutions across
-          Python, SQL, dbt, BigQuery, and Power BI.
-        </motion.p>
-
-        <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          variants={heroVariants}
-          initial="hidden"
-          animate="visible"
-          custom={5}
-        >
-          <Link
-            href="#projects"
-            className="w-full sm:w-auto px-6 py-3 bg-primary text-white font-medium rounded-md hover:bg-primary/90 transition shadow-sm"
+    <section className="bg-faint px-6 pb-16 pt-36 dark:bg-gray-900 md:px-12 md:pt-44">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid items-center gap-10 md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1.7fr)] md:gap-16">
+          <motion.div
+            className="flex justify-center md:justify-start"
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+            custom={1}
           >
-            View My Work
-          </Link>
+            <Image
+              src="/my-bitmoji.png"
+              alt="Shawn Macharia avatar"
+              width={280}
+              height={280}
+              priority
+              className="h-52 w-52 rounded-full border-4 border-primary/60 object-cover shadow-lg shadow-primary/10 md:h-64 md:w-64"
+            />
+          </motion.div>
 
-          <Link
-            href="#contact"
-            className="w-full sm:w-auto px-6 py-3 border border-primary text-primary font-medium rounded-md hover:bg-primary hover:text-white transition"
-          >
-            Get in Touch
-          </Link>
+          <div className="text-center md:text-left">
+            <motion.p
+              className="mb-4 text-lg font-semibold text-primary"
+              variants={heroVariants}
+              initial="hidden"
+              animate="visible"
+              custom={2}
+            >
+              Data Analytics Engineer & BI Specialist
+            </motion.p>
 
-          <a
-            href="/Shawn-Mugambi-Resume.pdf"
-            className="w-full sm:w-auto px-6 py-3 border border-primary text-primary font-medium rounded-md hover:bg-primary hover:text-white transition"
-            download
-          >
-            Download Resume
-          </a>
-        </motion.div>
+            <motion.p
+              className="max-w-3xl text-xl leading-relaxed text-gray-700 dark:text-gray-200 md:text-2xl"
+              variants={heroVariants}
+              initial="hidden"
+              animate="visible"
+              custom={3}
+            >
+              I&apos;m Shawn Macharia, a Data Analytics Engineer & BI Specialist
+              building reliable systems that make complex information easier to
+              act on. My work spans Python and SQL, from an{" "}
+              <Link
+                href="#projects"
+                className="underline decoration-primary underline-offset-4 hover:text-primary"
+              >
+                EPRA pipeline
+              </Link>{" "}
+              to decision-ready reporting. I use{" "}
+              <Link
+                href="#tech"
+                className="underline decoration-primary underline-offset-4 hover:text-primary"
+              >
+                dbt & BigQuery
+              </Link>{" "}
+              and Power BI to turn operational data into clear, useful insight.
+            </motion.p>
+
+            <motion.div
+              className="mt-8 flex flex-col items-center gap-4 sm:flex-row md:justify-start"
+              variants={heroVariants}
+              initial="hidden"
+              animate="visible"
+              custom={4}
+            >
+              <Link
+                href="#projects"
+                className="w-full rounded-md bg-primary px-6 py-3 text-center font-medium text-white shadow-sm transition hover:bg-primary/90 sm:w-auto"
+              >
+                View My Work
+              </Link>
+              <Link
+                href="#contact"
+                className="w-full rounded-md border border-primary px-6 py-3 text-center font-medium text-primary transition hover:bg-primary hover:text-white sm:w-auto"
+              >
+                Get in Touch
+              </Link>
+              <a
+                href="/Shawn-Mugambi-Resume.pdf"
+                className="w-full rounded-md border border-primary px-6 py-3 text-center font-medium text-primary transition hover:bg-primary hover:text-white sm:w-auto"
+                download
+              >
+                Download Resume
+              </a>
+            </motion.div>
+          </div>
+        </div>
+
+        <div className="mt-16 border-t border-gray-300 dark:border-gray-700" />
       </div>
     </section>
   );

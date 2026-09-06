@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import TechArsenal from "@/components/TechArsenal";
 import FeaturedProject from "@/components/FeaturedProject";
 import Projects from "@/components/projo";
+import Articles from "@/components/Articles";
 import Experience from "@/components/Experience";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
@@ -17,6 +18,7 @@ export default function Home() {
       <TechArsenal />
       <FeaturedProject />
       <Projects />
+      <Articles />
       <Experience />
       <About />
       <Contact />
