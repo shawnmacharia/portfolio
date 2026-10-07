@@ -1,66 +1,43 @@
-import "./globals.css";
 import type { Metadata } from "next";
+import { JetBrains_Mono, Raleway } from "next/font/google";
+import "./globals.css";
+import { Navbar } from "@/components/chrome/Navbar";
+import { Footer } from "@/components/chrome/Footer";
+import { SiteChrome } from "@/components/chrome/SiteChrome";
+import { siteConfig } from "@/config/site";
+
+const raleway = Raleway({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Shawn Mugambi | Data Analytics Engineer",
-  description:
-    "Data Analytics Engineer with a focus on building reliable data pipelines, analytical systems, and decision-ready BI solutions using Python, SQL, dbt, Airflow, BigQuery, and Power BI.",
-  keywords: [
-    "Data Analytics Engineer",
-    "Data Engineering",
-    "Analytics Engineering",
-    "Python",
-    "SQL",
-    "dbt",
-    "Airflow",
-    "BigQuery",
-    "Power BI",
-    "Finance Analytics",
-    "Insurance Analytics",
-  ],
-  openGraph: {
-    title: "Shawn Mugambi – Data Analytics Engineer",
-    description:
-      "Building reliable data pipelines, analytical systems, and decision-ready BI for finance and insurance domains.",
-    url: "https://shawnmugambi.dev",
-    siteName: "Shawn Mugambi Portfolio",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Shawn Mugambi – Data Analytics Engineer",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Shawn Mugambi – Data Analytics Engineer",
-    description:
-      "Building reliable data pipelines, analytical systems, and decision-ready BI for finance and insurance domains.",
-    images: ["/opengraph-image.png"],
-  },
+  title: `${siteConfig.name} | Analytics Engineer`,
+  description: "Shawn Macharia Mugambi: analytics engineer, BI specialist, and data storyteller based in Nairobi.",
+  metadataBase: new URL("https://www.example.com"),
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 z-50 bg-primary text-white p-2 rounded shadow"
-        >
+    <html lang="en" className={`${raleway.variable} ${jetBrainsMono.variable}`}>
+      <body className="bg-[#FAFAFA] text-[#1C1C1E] antialiased">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-[#1C1C1E] focus:px-3 focus:py-2 focus:text-white">
           Skip to main content
         </a>
-        <main id="main-content" className="min-h-screen">
-          {children}
-        </main>
+        <SiteChrome>
+          <Navbar />
+          <main id="main-content" className="min-h-screen">{children}</main>
+          <Footer />
+        </SiteChrome>
       </body>
     </html>
   );

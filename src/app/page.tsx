@@ -1,28 +1,5 @@
-// src/app/page.tsx
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import TechArsenal from "@/components/TechArsenal";
-import FeaturedProject from "@/components/FeaturedProject";
-import Projects from "@/components/projo";
-import Articles from "@/components/Articles";
-import Experience from "@/components/Experience";
-import About from "@/components/About";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-    <>
-      <Navbar />
-      <Hero />
-      <TechArsenal />
-      <FeaturedProject />
-      <Projects />
-      <Articles />
-      <Experience />
-      <About />
-      <Contact />
-      <Footer />
-    </>
-  );
+export default function HomePage() {
+  redirect("/work");
 }
