@@ -2,14 +2,55 @@ import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/Icons";
 import { Chip } from "@/components/ui/Chip";
 import { ScrollspySidebar } from "@/components/work/ScrollspySidebar";
-import { BeforeAfter } from "@/components/work/BeforeAfter";
 import { CodeBlock } from "@/components/work/CodeBlock";
-import { getPublishedProjects, type Project } from "@/content/projects";
+import { DashboardImage } from "@/components/work/DashboardImage";
+import { getPublishedProjects, type Project, type ProjectBlock } from "@/content/projects";
 
-export function CaseStudyLayout({ project, index, total }: { project: Project; index: number; total: number }) {
+function ContentBlocks({ blocks }: { blocks: ProjectBlock[] }) {
+  return (
+    <>
+      {blocks.map((block, index) => {
+        if (block.type === "p") {
+          return (
+            <p key={index} className="text-[1.05rem] leading-8 text-[#2C3641]">
+              {block.lead ? <strong>{block.lead} </strong> : null}
+              {block.text}
+            </p>
+          );
+        }
+
+        if (block.type === "bullets") {
+          return (
+            <ul key={index} className="list-disc space-y-3 pl-5 text-[1.05rem] leading-8 text-[#2C3641]">
+              {block.items.map((item, itemIndex) => (
+                <li key={itemIndex}>
+                  {item.lead ? <strong>{item.lead} </strong> : null}
+                  {item.text}
+                </li>
+              ))}
+            </ul>
+          );
+        }
+
+        if (block.type === "code") {
+          return <CodeBlock key={index} code={block.code} label={block.label} />;
+        }
+
+        return (
+          <aside key={index} className="rounded-r-[14px] border-l-4 border-[var(--accent)] bg-[var(--chip-bg)] px-5 py-4 text-[1.02rem] leading-8 text-[#2C3641]">
+            {block.text}
+          </aside>
+        );
+      })}
+    </>
+  );
+}
+
+export function CaseStudyLayout({ project }: { project: Project }) {
   const projects = getPublishedProjects();
-  const previousSlug = projects[(index - 1 + total) % total]?.slug ?? null;
-  const nextSlug = projects[(index + 1) % total]?.slug ?? null;
+  const index = projects.findIndex((item) => item.slug === project.slug);
+  const previousSlug = projects[(index - 1 + projects.length) % projects.length]?.slug ?? null;
+  const nextSlug = projects[(index + 1) % projects.length]?.slug ?? null;
 
   return (
     <main className="mx-auto max-w-[1080px] px-6 pb-16 pt-10">
@@ -19,15 +60,19 @@ export function CaseStudyLayout({ project, index, total }: { project: Project; i
         </Link>
       </div>
       <h1 className="text-[clamp(2.5rem,6vw,5rem)] font-light tracking-[-0.07em] text-[#111111]">{project.title}</h1>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <p className="mt-3 text-[clamp(1.25rem,2vw,1.4rem)] leading-8 text-[#68757F]">{project.cardTitle}</p>
+      <div className="mt-5 flex flex-wrap items-center gap-2">
         <Chip>power bi</Chip>
+      </div>
+      <div className="mt-8">
+        <DashboardImage project={project} index={index} />
       </div>
       <div className="mt-10 grid gap-10 lg:grid-cols-[220px_1fr]">
         <ScrollspySidebar />
         <article className="max-w-[680px] space-y-10 text-[#2F3942]">
           <section id="overview" className="scroll-mt-[100px]">
             <p className="text-[11px] uppercase tracking-[0.18em] text-[#6F7E8A]">overview</p>
-            <p className="mt-4 text-[1.08rem] leading-8 text-[#2C3641]">{project.summary}</p>
+            <p className="mt-4 text-[1.08rem] leading-8 text-[#2C3641]">{project.overview}</p>
           </section>
 
           <section id="the-problem" className="scroll-mt-[100px]">
@@ -35,21 +80,14 @@ export function CaseStudyLayout({ project, index, total }: { project: Project; i
             <p className="mt-4 text-[1.05rem] leading-8 text-[#2C3641]">{project.problem}</p>
           </section>
 
-          <section id="before-after" className="scroll-mt-[100px]">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-[#6F7E8A]">before & after</p>
-            <p className="mt-4 text-[1.05rem] leading-8 text-[#2C3641]">{project.beforeAfter}</p>
-            <div className="mt-6"><BeforeAfter /></div>
-          </section>
-
-          <section id="usability" className="scroll-mt-[100px]">
+          <section id="usability-ux" className="scroll-mt-[100px]">
             <p className="text-[11px] uppercase tracking-[0.18em] text-[#6F7E8A]">usability & ux</p>
-            <p className="mt-4 text-[1.05rem] leading-8 text-[#2C3641]">{project.usability}</p>
+            <div className="mt-4 space-y-4"><ContentBlocks blocks={project.usability} /></div>
           </section>
 
-          <section id="modeling" className="scroll-mt-[100px]">
+          <section id="dax-modeling" className="scroll-mt-[100px]">
             <p className="text-[11px] uppercase tracking-[0.18em] text-[#6F7E8A]">dax & modeling</p>
-            <p className="mt-4 text-[1.05rem] leading-8 text-[#2C3641]">{project.modeling}</p>
-            <div className="mt-6"><CodeBlock code={project.code} /></div>
+            <div className="mt-4 space-y-4"><ContentBlocks blocks={project.modeling} /></div>
           </section>
 
           <section id="outcome" className="scroll-mt-[100px]">

@@ -14,8 +14,5 @@ export default async function WorkProjectPage({ params }: { params: Promise<{ sl
     notFound();
   }
 
-  const projects = getPublishedProjects();
-  const index = projects.findIndex((item) => item.slug === slug);
-
-  return <CaseStudyLayout project={project} index={index} total={projects.length} />;
+  return <CaseStudyLayout project={project} />;
 }

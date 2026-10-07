@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 const sections = [
   { id: "overview", label: "overview" },
   { id: "the-problem", label: "the problem" },
-  { id: "before-after", label: "before & after" },
-  { id: "usability", label: "usability & ux" },
-  { id: "modeling", label: "dax & modeling" },
+  { id: "usability-ux", label: "usability & ux" },
+  { id: "dax-modeling", label: "dax & modeling" },
   { id: "outcome", label: "outcome" },
+  { id: "pbix", label: "the .pbix" },
 ] as const;
 
 export function ScrollspySidebar() {
@@ -17,14 +17,19 @@ export function ScrollspySidebar() {
   const { scrollYProgress } = useScroll();
 
   useEffect(() => {
+    const updateActive = () => {
+      const marker = window.innerHeight * 0.32;
+      const visibleSections = sections
+        .map(({ id }) => document.getElementById(id))
+        .filter((section): section is HTMLElement => section !== null);
+      const current = visibleSections
+        .filter((section) => section.getBoundingClientRect().top <= marker)
+        .at(-1);
+      setActive(current?.id ?? visibleSections[0]?.id ?? "overview");
+    };
     const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) {
-          setActive(visible.target.id);
-        }
+      () => {
+        updateActive();
       },
       { rootMargin: "-30% 0px -60% 0px", threshold: [0.1, 0.3, 0.6, 0.8] },
     );
@@ -33,8 +38,13 @@ export function ScrollspySidebar() {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
+    updateActive();
+    window.addEventListener("scroll", updateActive, { passive: true });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", updateActive);
+    };
   }, []);
 
   return (
@@ -45,13 +55,13 @@ export function ScrollspySidebar() {
           style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
         />
       </motion.div>
-      <nav className="hidden gap-2 lg:flex lg:flex-col">
+      <nav className="flex flex-wrap gap-2 lg:flex-col">
         {sections.map((section) => (
           <button
             key={section.id}
             type="button"
             onClick={() => document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth", block: "start" })}
-            className="relative flex w-full items-center justify-between rounded-full px-3 py-2 text-left text-[11px] uppercase tracking-[0.15em]"
+            className="relative flex items-center justify-between rounded-full border border-[#E3E9F2] px-3 py-2 text-left text-[10px] uppercase tracking-[0.12em] lg:w-full lg:text-[11px] lg:tracking-[0.15em]"
           >
             {active === section.id ? (
               <motion.span

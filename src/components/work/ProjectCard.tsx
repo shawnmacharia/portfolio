@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Chip } from "@/components/ui/Chip";
 import type { Project } from "@/content/projects";
 
-function CoverArt({ index }: { index: number }) {
+export function CoverArt({ index }: { index: number }) {
   const colors = [
     ["#D9E9F4", "#C6DBF0", "#9CB9CF"],
     ["#E9E4F2", "#D4D8F1", "#B5BBD3"],

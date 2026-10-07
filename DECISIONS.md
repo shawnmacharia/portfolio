@@ -4,3 +4,4 @@
 2026-10-07: Timeline start date for Data Cycle Analytics kept as 2026–PRESENT; human's handwritten annotation may have read 2022. Change it in `src/content/timeline.ts` if wrong.
 2026-10-07: Kept the five previous work entries in the project data but unpublished them; the work grid, case-study routes, previous/next links, and sitemap now use one published-project selector.
 2026-10-07: Matched the CRM, market, and hiring overview screenshots by explicit filenames and verified dimensions; originals are below 3 MB and need no rename or optimization.
+2026-10-07: Replaced the retired Before & After comparison with the six requested typed-content case-study sections and use the full-page supplied screenshots as detail previews.
