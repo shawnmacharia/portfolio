@@ -4,6 +4,8 @@ import { Chip } from "@/components/ui/Chip";
 import { ScrollspySidebar } from "@/components/work/ScrollspySidebar";
 import { CodeBlock } from "@/components/work/CodeBlock";
 import { DashboardImage } from "@/components/work/DashboardImage";
+import { PbixSection } from "@/components/work/PbixSection";
+import { siteConfig } from "@/config/site";
 import { getPublishedProjects, type Project, type ProjectBlock } from "@/content/projects";
 
 function ContentBlocks({ blocks }: { blocks: ProjectBlock[] }) {
@@ -63,6 +65,16 @@ export function CaseStudyLayout({ project }: { project: Project }) {
       <p className="mt-3 text-[clamp(1.25rem,2vw,1.4rem)] leading-8 text-[#68757F]">{project.cardTitle}</p>
       <div className="mt-5 flex flex-wrap items-center gap-2">
         <Chip>power bi</Chip>
+        <a
+          href={project.pbixUrl ?? siteConfig.pbixFolderUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Power BI project files in OneDrive in a new tab"
+          data-cursor-label="open .pbix"
+          className="inline-flex items-center rounded-full border border-[#D9E6F2] bg-[#EEF3F7] px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-[#526575] outline-none transition hover:bg-[#E4EDF4] focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+        >
+          {siteConfig.pbixOpenLabel}
+        </a>
       </div>
       <div className="mt-8">
         <DashboardImage project={project} index={index} />
@@ -94,6 +106,8 @@ export function CaseStudyLayout({ project }: { project: Project }) {
             <p className="text-[11px] uppercase tracking-[0.18em] text-[#6F7E8A]">outcome</p>
             <p className="mt-4 text-[1.05rem] leading-8 text-[#2C3641]">{project.outcome}</p>
           </section>
+
+          <PbixSection project={project} />
         </article>
       </div>
       <div className="mt-12 flex items-center justify-between border-t border-[#E6EBF1] pt-7 text-[11px] uppercase tracking-[0.16em] text-[#667885]">

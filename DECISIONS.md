@@ -5,3 +5,4 @@
 2026-10-07: Kept the five previous work entries in the project data but unpublished them; the work grid, case-study routes, previous/next links, and sitemap now use one published-project selector.
 2026-10-07: Matched the CRM, market, and hiring overview screenshots by explicit filenames and verified dimensions; originals are below 3 MB and need no rename or optimization.
 2026-10-07: Replaced the retired Before & After comparison with the six requested typed-content case-study sections and use the full-page supplied screenshots as detail previews.
+2026-10-07: The provided OneDrive `onedrive.live.com/my?id=...` URL is an owner-view link and will normally require visitors to sign in; replace the single `pbixFolderUrl` value with an "Anyone with the link can view" share URL for public access.
