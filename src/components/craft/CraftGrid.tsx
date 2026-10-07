@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { craftItems, craftCategories, type CraftCategory, type CraftItem } from "@/content/craft";
 import { CraftCard } from "@/components/craft/CraftCard";
@@ -19,28 +19,12 @@ function shuffleArray<T>(items: T[]) {
 export function CraftGrid() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [category, setCategory] = useState<CraftCategory>("all");
   const [items, setItems] = useState<CraftItem[]>(craftItems);
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
+  const category = useMemo<CraftCategory>(() => {
     const filter = searchParams.get("filter");
-    if (filter && craftCategories.includes(filter as CraftCategory)) {
-      setCategory(filter as CraftCategory);
-    }
+    return filter && craftCategories.includes(filter as CraftCategory) ? (filter as CraftCategory) : "all";
   }, [searchParams]);
-
-  useEffect(() => {
-    if (!mounted) return;
-    const params = new URLSearchParams(searchParams.toString());
-    if (category === "all") {
-      params.delete("filter");
-    } else {
-      params.set("filter", category);
-    }
-    router.replace(`?/filter=${category === "all" ? "" : category}`, { scroll: false });
-  }, [category, mounted, router, searchParams]);
 
   const filteredItems = useMemo(() => {
     if (category === "all") return items;
@@ -52,16 +36,28 @@ export function CraftGrid() {
       setItems((prev) => shuffleArray(prev));
       return;
     }
-    setCategory(value as CraftCategory);
+
+    const params = new URLSearchParams(searchParams.toString());
+    if (value === "all") {
+      params.delete("filter");
+    } else {
+      params.set("filter", value);
+    }
+
+    const next = params.toString();
+    router.replace(next ? `?${next}` : "/craft", { scroll: false });
   };
 
   return (
-    <div className="mx-auto max-w-[1080px] px-6">
-      <div className="mb-6 flex items-center justify-between gap-3">
-        <FilterBar active={category} onChange={handleFilter} />
+    <div className="w-full max-w-[1080px]">
+      <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <h1 className="text-[clamp(2.2rem,4vw,3.2rem)] font-light tracking-[-0.06em] text-[#111111]">craft</h1>
+        <div className="flex-1 lg:max-w-[760px]">
+          <FilterBar active={category} onChange={handleFilter} />
+        </div>
       </div>
-      <div className="mt-4 text-right text-[11px] uppercase tracking-[0.18em] text-[#63717D]">i like to make things :)</div>
-      <motion.div layout className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mb-6 text-left text-[11px] uppercase tracking-[0.14em] text-[#63717D] lg:text-right">i like building things with data :)</div>
+      <motion.div layout className="mt-2 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <AnimatePresence mode="popLayout">
           {filteredItems.map((item) => (
             <CraftCard key={item.id} item={item} active={true} />

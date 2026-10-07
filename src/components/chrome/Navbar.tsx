@@ -12,8 +12,6 @@ export function Navbar() {
   const { scrollY } = useScroll();
   const isWork = pathname === "/work" || pathname.startsWith("/work/");
 
-  const activeRoute = pathname === "/craft" ? "craft" : pathname === "/about" ? "about" : "work";
-
   return (
     <motion.nav
       className="sticky top-0 z-50 border-b border-[#E8E8EB] bg-[rgba(250,250,250,0.55)] backdrop-blur-[8px]"
