@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useScroll } from "framer-motion";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const sections = [
