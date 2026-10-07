@@ -1,19 +1,20 @@
 import { notFound } from "next/navigation";
 import { CaseStudyLayout } from "@/components/work/CaseStudyLayout";
-import { projectMap, projects } from "@/content/projects";
+import { getPublishedProjects, projectMap } from "@/content/projects";
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return getPublishedProjects().map((project) => ({ slug: project.slug }));
 }
 
 export default async function WorkProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = projectMap.get(slug);
 
-  if (!project) {
+  if (!project?.published) {
     notFound();
   }
 
+  const projects = getPublishedProjects();
   const index = projects.findIndex((item) => item.slug === slug);
 
   return <CaseStudyLayout project={project} index={index} total={projects.length} />;

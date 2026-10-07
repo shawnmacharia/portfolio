@@ -1,9 +1,14 @@
 export type Project = {
   slug: string;
   title: string;
-  status: string;
-  year: number;
-  tags: string[];
+  cardTitle: string;
+  published: boolean;
+  cover?: {
+    src: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
   summary: string;
   problem: string;
   beforeAfter: string;
@@ -11,15 +16,15 @@ export type Project = {
   modeling: string;
   outcome: string;
   code: string;
+  pbixUrl?: string;
 };
 
 export const projects: Project[] = [
   {
     slug: "financial-command-center",
     title: "Financial Command Center",
-    status: "shipped",
-    year: 2026,
-    tags: ["power bi", "financial reporting"],
+    cardTitle: "Financial Command Center",
+    published: false,
     summary:
       "A ledger and financial reporting dashboard for a Kenyan educational publisher, turning fragmented account data into a clear operating view for sales, margins, and title performance.",
     problem:
@@ -34,9 +39,8 @@ export const projects: Project[] = [
   {
     slug: "spotify-youtube-analytics",
     title: "Spotify + YouTube Analytics",
-    status: "shipped",
-    year: 2026,
-    tags: ["power bi", "dax", "data modeling"],
+    cardTitle: "Spotify + YouTube Analytics",
+    published: false,
     summary:
       "A dark-mode BI experience over a ~65k-track music dataset, combining streaming and video performance into a trusted analytical story.",
     problem:
@@ -51,9 +55,8 @@ export const projects: Project[] = [
   {
     slug: "lego-rebrickable-storytelling",
     title: "LEGO Storytelling Dashboard",
-    status: "shipped",
-    year: 2026,
-    tags: ["power bi", "data storytelling"],
+    cardTitle: "LEGO Storytelling Dashboard",
+    published: false,
     summary:
       "A competition-ready Power BI storytelling dashboard analyzing the Rebrickable LEGO dataset with emphasis on composition, narrative, and visual clarity.",
     problem:
@@ -68,9 +71,8 @@ export const projects: Project[] = [
   {
     slug: "bank-marketing-intelligence",
     title: "Bank Marketing Intelligence",
-    status: "shipped",
-    year: 2025,
-    tags: ["data engineering", "analytics engineering"],
+    cardTitle: "Bank Marketing Intelligence",
+    published: false,
     summary:
       "An end-to-end modern data stack for bank marketing analytics, supporting operational reporting and cohort-level decisioning from raw campaign activity to curated marts.",
     problem:
@@ -85,9 +87,8 @@ export const projects: Project[] = [
   {
     slug: "epra-fuel-price-pipeline",
     title: "EPRA Fuel Price Pipeline",
-    status: "shipped",
-    year: 2026,
-    tags: ["python", "airflow", "bigquery"],
+    cardTitle: "EPRA Fuel Price Pipeline",
+    published: false,
     summary:
       "A five-phase pipeline that sources Kenyan fuel pump prices from the EPRA website, stages them in Postgres, orchestrates tasks with Airflow, and lands them in BigQuery for analysis.",
     problem:
@@ -99,6 +100,67 @@ export const projects: Project[] = [
     outcome: "The result is a dependable data foundation for exploring fuel market changes over time without redoing the collection work by hand.",
     code: "def extract_prices():\n    soup = fetch_epra_page()\n    rows = parse_prices(soup)\n    return rows\n",
   },
+  {
+    slug: "telecom-crm-dashboard",
+    title: "Telecom CRM Dashboard",
+    cardTitle: "Connecting the dots between customer churn, billing, and support SLAs.",
+    published: true,
+    cover: {
+      src: "/images/crm-screenshot.png",
+      width: 1263,
+      height: 725,
+      alt: "Telecom CRM dashboard overview showing customer sales and revenue KPIs, B2B and B2C revenue, invoice trends, and customer support details.",
+    },
+    summary: "",
+    problem: "",
+    beforeAfter: "",
+    usability: "",
+    modeling: "",
+    outcome: "",
+    code: "",
+  },
+  {
+    slug: "market-analysis-dashboard",
+    title: "Market Analysis Dashboard",
+    cardTitle: "Where is the money going, and who is actually bringing it in?",
+    published: true,
+    cover: {
+      src: "/images/market-analysis-dashboard.png",
+      width: 1259,
+      height: 731,
+      alt: "Marketing analysis report overview with sales KPIs, channel breakdown, product rankings, and channel performance over time.",
+    },
+    summary: "",
+    problem: "",
+    beforeAfter: "",
+    usability: "",
+    modeling: "",
+    outcome: "",
+    code: "",
+  },
+  {
+    slug: "employee-hiring-history",
+    title: "Employee Hiring History",
+    cardTitle: "It’s not just about how many people you hire, but how many of them actually stay and succeed.",
+    published: true,
+    cover: {
+      src: "/images/employee-hiring-history.png",
+      width: 1260,
+      height: 722,
+      alt: "Employee hiring history dashboard overview showing new hire trends, age-group and gender breakdowns, and employee detail.",
+    },
+    summary: "",
+    problem: "",
+    beforeAfter: "",
+    usability: "",
+    modeling: "",
+    outcome: "",
+    code: "",
+  },
 ];
 
 export const projectMap = new Map(projects.map((project) => [project.slug, project]));
+
+export function getPublishedProjects() {
+  return projects.filter((project) => project.published);
+}

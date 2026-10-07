@@ -52,17 +52,12 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           </span>
         </div>
         <div className="px-4 pb-5 pt-4">
-          <div className="mb-3 flex items-center justify-between gap-3 text-[11px] uppercase tracking-[0.16em] text-[#6E7781]">
+          <div className="mb-3 flex items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-[0.16em] text-[#6E7781]">
             <span>{project.title}</span>
-            <span>
-              {project.status} · {project.year}
-            </span>
           </div>
-          <h3 className="text-[clamp(1.5rem,2vw,2rem)] font-light tracking-[-0.05em] text-[#1C1C1E]">{project.title}</h3>
+          <h3 className="text-[clamp(1.5rem,2vw,2rem)] font-light tracking-[-0.05em] text-[#1C1C1E]">{project.cardTitle}</h3>
           <div className="mt-4 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <Chip key={tag}>{tag}</Chip>
-            ))}
+            <Chip>power bi</Chip>
           </div>
         </div>
       </div>

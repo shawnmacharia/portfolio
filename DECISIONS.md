@@ -2,3 +2,4 @@
 2026-10-07: Kept the LinkedIn URL intentionally empty to preserve the design requirement to hide the icon until the human fills it in.
 2026-10-07: Used generated SVG-based covers, mascot art, and placeholder portrait styling instead of binary assets so the site remains self-contained and deployable without local images.
 2026-10-07: Timeline start date for Data Cycle Analytics kept as 2026–PRESENT; human's handwritten annotation may have read 2022. Change it in `src/content/timeline.ts` if wrong.
+2026-10-07: Kept the five previous work entries in the project data but unpublished them; the work grid, case-study routes, previous/next links, and sitemap now use one published-project selector.

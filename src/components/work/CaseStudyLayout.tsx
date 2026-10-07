@@ -4,11 +4,12 @@ import { Chip } from "@/components/ui/Chip";
 import { ScrollspySidebar } from "@/components/work/ScrollspySidebar";
 import { BeforeAfter } from "@/components/work/BeforeAfter";
 import { CodeBlock } from "@/components/work/CodeBlock";
-import { projectMap, type Project } from "@/content/projects";
+import { getPublishedProjects, type Project } from "@/content/projects";
 
 export function CaseStudyLayout({ project, index, total }: { project: Project; index: number; total: number }) {
-  const previousSlug = index > 0 ? projectMap.get(projects[index - 1])?.slug ?? null : null;
-  const nextSlug = index < total - 1 ? projectMap.get(projects[index + 1])?.slug ?? null : null;
+  const projects = getPublishedProjects();
+  const previousSlug = projects[(index - 1 + total) % total]?.slug ?? null;
+  const nextSlug = projects[(index + 1) % total]?.slug ?? null;
 
   return (
     <main className="mx-auto max-w-[1080px] px-6 pb-16 pt-10">
@@ -17,16 +18,9 @@ export function CaseStudyLayout({ project, index, total }: { project: Project; i
           <ArrowIcon className="h-3.5 w-3.5 rotate-180" /> work
         </Link>
       </div>
-      <div className="mb-6 flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-[#667581]">
-        <span>{project.status}</span>
-        <span>·</span>
-        <span>{project.year}</span>
-      </div>
       <h1 className="text-[clamp(2.5rem,6vw,5rem)] font-light tracking-[-0.07em] text-[#111111]">{project.title}</h1>
       <div className="mt-4 flex flex-wrap gap-2">
-        {project.tags.map((tag) => (
-          <Chip key={tag}>{tag}</Chip>
-        ))}
+        <Chip>power bi</Chip>
       </div>
       <div className="mt-10 grid gap-10 lg:grid-cols-[220px_1fr]">
         <ScrollspySidebar />
@@ -75,11 +69,3 @@ export function CaseStudyLayout({ project, index, total }: { project: Project; i
     </main>
   );
 }
-
-const projects = [
-  "financial-command-center",
-  "spotify-youtube-analytics",
-  "lego-rebrickable-storytelling",
-  "bank-marketing-intelligence",
-  "epra-fuel-price-pipeline",
-];
