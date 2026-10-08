@@ -7,3 +7,4 @@
 2026-10-07: Replaced the retired Before & After comparison with the six requested typed-content case-study sections and use the full-page supplied screenshots as detail previews.
 2026-10-07: The provided OneDrive `onedrive.live.com/my?id=...` URL is an owner-view link and will normally require visitors to sign in; replace the single `pbixFolderUrl` value with an "Anyone with the link can view" share URL for public access.
 2026-10-07: Use the same simple geometric owl in SVG, generated 16/32/48px ICO, and Apple touch icon to replace the framework's default browser icon.
+2026-10-08: Unpublished EPRA content remains retained in project data, while its former standalone `/projects/epra-fuel-intelligence` route returns 404 consistently with the hidden work slugs.
