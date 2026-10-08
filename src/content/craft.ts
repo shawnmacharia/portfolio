@@ -27,7 +27,7 @@ export const craftItems: CraftItem[] = [
     category: "data engineering",
     href: "https://github.com/shawnmacharia/epra-fuel-data-pipeline",
     accent: "#BFD7EA",
-    note: "https://github.com/shawnmacharia/epra-fuel-data-pipeline",
+    note: "view repository ↗",
     cover: getFirstDashboardImage("epra fuel pipeline")?.src,
   },
   {
@@ -39,7 +39,7 @@ export const craftItems: CraftItem[] = [
     category: "data engineering",
     href: "https://github.com/shawnmacharia/ai-job-search",
     accent: "#D6E8F0",
-    note: "https://github.com/shawnmacharia/ai-job-search",
+    note: "view repository ↗",
   },
   {
     id: "hr-dashboard",
