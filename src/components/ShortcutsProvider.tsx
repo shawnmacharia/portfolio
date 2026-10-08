@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 
 const ShortcutsContext = createContext<{
   isOpen: boolean;
@@ -20,8 +21,16 @@ export function useShortcuts() {
 
 export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const { resolvedTheme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const lastFocusRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    document.body.dataset.shortcutsOpen = String(isOpen);
+    return () => {
+      delete document.body.dataset.shortcutsOpen;
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -37,6 +46,10 @@ export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
+      if (isOpen && event.key !== "Escape" && event.key !== "?" && !(event.shiftKey && event.key === "/")) {
+        return;
+      }
+
       if (event.key === "?" || (event.shiftKey && event.key === "/")) {
         event.preventDefault();
         setIsOpen((prev) => !prev);
@@ -44,6 +57,13 @@ export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
       }
 
       if (event.key === "Escape") {
+        setIsOpen(false);
+        return;
+      }
+
+      if (event.key.toLowerCase() === "t") {
+        event.preventDefault();
+        setTheme(resolvedTheme === "dark" ? "light" : "dark");
         setIsOpen(false);
         return;
       }
@@ -64,7 +84,7 @@ export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [router]);
+  }, [isOpen, resolvedTheme, router, setTheme]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -120,6 +140,7 @@ export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
                   ["W", "work"],
                   ["C", "craft"],
                   ["A", "about"],
+                  ["T", "toggle theme"],
                   ["?", "toggle this panel"],
                   ["esc", "close"],
                 ].map(([key, label]) => (

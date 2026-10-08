@@ -175,7 +175,7 @@ export const projects: Project[] = [
     cardTitle: "Connecting the dots between customer churn, billing, and support SLAs.",
     published: true,
     cover: {
-      src: "/images/crm-screenshot.png",
+      src: "/images/crm-screenshot/crm-screenshot-1.png",
       width: 1263,
       height: 725,
       alt: "Telecom CRM dashboard overview showing customer sales and revenue KPIs, B2B and B2C revenue, invoice trends, and customer support details.",
@@ -216,7 +216,7 @@ export const projects: Project[] = [
     cardTitle: "Where is the money going, and who is actually bringing it in?",
     published: true,
     cover: {
-      src: "/images/market-analysis-dashboard.png",
+      src: "/images/market-analysis-dashboard/market-analysis-screenshot-1.png",
       width: 1259,
       height: 731,
       alt: "Marketing analysis report overview with sales KPIs, channel breakdown, product rankings, and channel performance over time.",
@@ -266,7 +266,7 @@ export const projects: Project[] = [
     cardTitle: "It’s not just about how many people you hire, but how many of them actually stay and succeed.",
     published: true,
     cover: {
-      src: "/images/employee-hiring-history.png",
+      src: "/images/employee-hiring-history/employee-hiring-history-screenshot-1.png",
       width: 1260,
       height: 722,
       alt: "Employee hiring history dashboard overview showing new hire trends, age-group and gender breakdowns, and employee detail.",

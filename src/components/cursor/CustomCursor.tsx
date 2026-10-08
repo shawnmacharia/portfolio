@@ -105,11 +105,12 @@ export function CustomCursor() {
         </motion.div>
       ) : (
         <motion.div
-          className="flex h-[14px] w-[14px] items-center justify-center rounded-full border border-transparent bg-[rgba(28,28,30,0.14)] backdrop-blur-[2px]"
+          className="flex h-[14px] w-[14px] items-center justify-center rounded-full border bg-[rgba(28,28,30,0.14)] backdrop-blur-[2px]"
+          style={{ borderColor: "rgba(0,0,0,0)" }}
           animate={{
             width: isActive ? (label ? 134 : 42) : 14,
             height: isActive ? (label ? 40 : 42) : 14,
-            borderColor: isActive ? "rgba(107,155,195,0.8)" : "transparent",
+            borderColor: isActive ? "rgba(107,155,195,0.8)" : "rgba(0,0,0,0)",
             background: isActive ? "rgba(255,255,255,0.5)" : "rgba(28,28,30,0.14)",
           }}
           transition={{ type: "spring", stiffness: 380, damping: 28 }}

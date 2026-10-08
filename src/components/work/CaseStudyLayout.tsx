@@ -1,12 +1,14 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowIcon } from "@/components/ui/Icons";
 import { Chip } from "@/components/ui/Chip";
 import { ScrollspySidebar } from "@/components/work/ScrollspySidebar";
 import { CodeBlock } from "@/components/work/CodeBlock";
-import { DashboardImage } from "@/components/work/DashboardImage";
+import { DashboardCarousel } from "@/components/work/DashboardCarousel";
 import { PbixSection } from "@/components/work/PbixSection";
 import { siteConfig } from "@/config/site";
 import { getPublishedProjects, type Project, type ProjectBlock } from "@/content/projects";
+import { getDashboardImages } from "@/lib/dashboardImages";
 
 function ContentBlocks({ blocks }: { blocks: ProjectBlock[] }) {
   return (
@@ -53,6 +55,13 @@ export function CaseStudyLayout({ project }: { project: Project }) {
   const index = projects.findIndex((item) => item.slug === project.slug);
   const previousSlug = projects[(index - 1 + projects.length) % projects.length]?.slug ?? null;
   const nextSlug = projects[(index + 1) % projects.length]?.slug ?? null;
+  const imageFolderMap: Record<string, string> = {
+    "telecom-crm-dashboard": "crm-screenshot",
+    "market-analysis-dashboard": "market-analysis-dashboard",
+    "employee-hiring-history": "employee-hiring-history",
+  };
+  const folderName = imageFolderMap[project.slug] ?? "";
+  const images = folderName ? getDashboardImages(folderName) : [];
 
   return (
     <main className="mx-auto max-w-[1080px] px-6 pb-16 pt-10">
@@ -77,7 +86,13 @@ export function CaseStudyLayout({ project }: { project: Project }) {
         </a>
       </div>
       <div className="mt-8">
-        <DashboardImage project={project} index={index} />
+        {images.length ? (
+          <DashboardCarousel images={images} title={project.title} />
+        ) : project.cover ? (
+          <div className="relative aspect-[1263/725] overflow-hidden rounded-[14px] border border-[var(--border)] bg-[var(--surface)] shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06)]">
+            <Image src={project.cover.src} alt={project.cover.alt} fill sizes="(min-width: 1024px) 1080px, 100vw" className="object-contain" />
+          </div>
+        ) : null}
       </div>
       <div className="mt-10 grid gap-10 lg:grid-cols-[220px_1fr]">
         <ScrollspySidebar />

@@ -1,0 +1,110 @@
+{
+  "crm-screenshot": {
+    "images": [
+      {
+        "file": "crm-screenshot-1.png",
+        "src": "/images/crm-screenshot/crm-screenshot-1.png",
+        "width": 1263,
+        "height": 725
+      },
+      {
+        "file": "crm-screenshot-2.png",
+        "src": "/images/crm-screenshot/crm-screenshot-2.png",
+        "width": 1452,
+        "height": 820
+      },
+      {
+        "file": "crm-screenshot-3.png",
+        "src": "/images/crm-screenshot/crm-screenshot-3.png",
+        "width": 1470,
+        "height": 817
+      },
+      {
+        "file": "crm-screenshot-4.png",
+        "src": "/images/crm-screenshot/crm-screenshot-4.png",
+        "width": 1465,
+        "height": 801
+      }
+    ]
+  },
+  "employee-hiring-history": {
+    "images": [
+      {
+        "file": "employee-hiring-history-screenshot-1.png",
+        "src": "/images/employee-hiring-history/employee-hiring-history-screenshot-1.png",
+        "width": 1260,
+        "height": 722
+      },
+      {
+        "file": "employee-hiring-history-screenshot-2.png",
+        "src": "/images/employee-hiring-history/employee-hiring-history-screenshot-2.png",
+        "width": 1464,
+        "height": 800
+      },
+      {
+        "file": "employee-hiring-history-screenshot-3.png",
+        "src": "/images/employee-hiring-history/employee-hiring-history-screenshot-3.png",
+        "width": 1471,
+        "height": 796
+      },
+      {
+        "file": "employee-hiring-history-screenshot-4.png",
+        "src": "/images/employee-hiring-history/employee-hiring-history-screenshot-4.png",
+        "width": 1703,
+        "height": 885
+      }
+    ]
+  },
+  "hr-dashboard": {
+    "images": [
+      {
+        "file": "hr-dashboard.png",
+        "src": "/images/hr-dashboard/hr-dashboard.png",
+        "width": 1255,
+        "height": 701
+      }
+    ]
+  },
+  "market-analysis-dashboard": {
+    "images": [
+      {
+        "file": "market-analysis-screenshot-1.png",
+        "src": "/images/market-analysis-dashboard/market-analysis-screenshot-1.png",
+        "width": 1259,
+        "height": 731
+      },
+      {
+        "file": "market-analysis-screenshot-2.png",
+        "src": "/images/market-analysis-dashboard/market-analysis-screenshot-2.png",
+        "width": 1503,
+        "height": 875
+      },
+      {
+        "file": "market-analysis-screenshot-3.png",
+        "src": "/images/market-analysis-dashboard/market-analysis-screenshot-3.png",
+        "width": 1473,
+        "height": 887
+      }
+    ]
+  },
+  "sales-analysis-dashboard": {
+    "images": [
+      {
+        "file": "sales-analysis-dashboard.png",
+        "src": "/images/sales-analysis-dashboard/sales-analysis-dashboard.png",
+        "width": 1279,
+        "height": 726
+      }
+    ]
+  },
+  "supermarket-dashboard": {
+    "images": [
+      {
+        "file": "supermarket-dashboard.png",
+        "src": "/images/supermarket-dashboard/supermarket-dashboard.png",
+        "width": 1269,
+        "height": 715
+      }
+    ]
+  }
+}

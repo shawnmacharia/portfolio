@@ -1,14 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { craftCategories, craftCounts } from "@/content/craft";
+import { craftCategories, getCraftCounts } from "@/content/craft";
 
 export function FilterBar({
   active,
   onChange,
+  counts,
 }: {
   active: string;
   onChange: (value: string) => void;
+  counts: ReturnType<typeof getCraftCounts>;
 }) {
   return (
     <div className="flex flex-wrap items-center gap-3">
@@ -30,7 +32,7 @@ export function FilterBar({
             ) : null}
             <span className="relative inline-flex items-center gap-2">
               <span>{category}</span>
-              <span className="text-[#6B7B8A]">{craftCounts[category]}</span>
+              <span className="text-[#6B7B8A]">{counts[category]}</span>
             </span>
           </button>
         );

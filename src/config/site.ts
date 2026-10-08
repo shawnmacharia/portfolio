@@ -7,6 +7,8 @@ export const siteConfig = {
   github: "https://github.com/shawnmacharia",
   linkedin: "",
   x: "",
+  defaultTheme: "system",
+  showFeaturedInCraft: false,
   heroLead: "Hi! I'm",
   heroName: "Shawn Mugambi",
   heroRole: "analytics engineer",
@@ -18,6 +20,17 @@ export const siteConfig = {
   pbixPath: "Projects Portfolio / Power Bi Projects",
   pbixButtonLabel: "open in onedrive ↗",
   pbixOpenLabel: "open .pbix ↗",
+  articles: {
+    revalidateSeconds: 1800,
+    medium: {
+      profileUrl: "https://medium.com/@shawnmacharia9",
+      feedUrl: "https://medium.com/feed/@shawnmacharia9",
+    },
+    blogger: {
+      blogId: "3410518966050500386",
+      feedUrl: "https://www.blogger.com/feeds/3410518966050500386/posts/default?alt=json&max-results=50",
+    },
+  },
   // Alternate hero lines:
   // "an analytics engineer turning messy data into little moments of 'aha', with code, not just numbers"
   // "an analytics engineer who makes data feel a little more alive"

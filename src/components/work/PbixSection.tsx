@@ -1,8 +1,8 @@
 import { siteConfig } from "@/config/site";
 import type { Project } from "@/content/projects";
 
-export function PbixSection({ project }: { project: Project }) {
-  const href = project.pbixUrl ?? siteConfig.pbixFolderUrl;
+export function PbixSection({ project }: { project?: Pick<Project, "pbixUrl"> }) {
+  const href = project?.pbixUrl ?? siteConfig.pbixFolderUrl;
   const newTabLabel = "Opens Power BI files in OneDrive in a new tab";
 
   return (

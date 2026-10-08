@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { craftItems, craftCategories, type CraftCategory, type CraftItem } from "@/content/craft";
+import { craftItems, craftCategories, getCraftCounts, type CraftCategory, type CraftItem } from "@/content/craft";
 import { CraftCard } from "@/components/craft/CraftCard";
 import { FilterBar } from "@/components/craft/FilterBar";
 
@@ -16,10 +16,11 @@ function shuffleArray<T>(items: T[]) {
   return copy;
 }
 
-export function CraftGrid() {
+export function CraftGrid({ articles = [] }: { articles?: CraftItem[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [items, setItems] = useState<CraftItem[]>(craftItems);
+  const [items, setItems] = useState<CraftItem[]>([...craftItems, ...articles]);
+  const counts = useMemo(() => getCraftCounts(items), [items]);
 
   const category = useMemo<CraftCategory>(() => {
     const filter = searchParams.get("filter");
@@ -53,10 +54,9 @@ export function CraftGrid() {
       <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <h1 className="text-[clamp(2.2rem,4vw,3.2rem)] font-light tracking-[-0.06em] text-[#111111]">craft</h1>
         <div className="flex-1 lg:max-w-[760px]">
-          <FilterBar active={category} onChange={handleFilter} />
+          <FilterBar active={category} onChange={handleFilter} counts={counts} />
         </div>
       </div>
-      <div className="mb-6 text-left text-[11px] uppercase tracking-[0.14em] text-[#63717D] lg:text-right">i like building things with data :)</div>
       <motion.div layout className="mt-2 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <AnimatePresence mode="popLayout">
           {filteredItems.map((item) => (

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useScroll } from "framer-motion";
 import { GitHubIcon, LinkedInIcon, MailIcon } from "@/components/ui/Icons";
+import ThemeToggle from "@/components/ThemeToggle";
 import { navItems, siteConfig } from "@/config/site";
 import { OwlMark } from "@/components/mascot/OwlMark";
 
@@ -14,7 +15,7 @@ export function Navbar() {
 
   return (
     <motion.nav
-      className="sticky top-0 z-50 border-b border-[#E8E8EB] bg-[rgba(250,250,250,0.55)] backdrop-blur-[8px]"
+      className="sticky top-0 z-50 border-b border-[var(--border)] bg-[rgba(250,250,250,0.55)] backdrop-blur-[8px] dark:bg-[rgba(15,15,17,0.55)]"
       style={{ WebkitBackdropFilter: "blur(8px)" }}
       initial={false}
     >
@@ -29,7 +30,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <Link href="/work" className="flex items-center gap-2" aria-label="Go to work page">
             <OwlMark />
-            <span className="hidden text-[11px] uppercase tracking-[0.18em] text-[#1C1C1E] sm:inline">{siteConfig.short}</span>
+            <span className="hidden text-[11px] uppercase tracking-[0.18em] text-[var(--text)] sm:inline">{siteConfig.short}</span>
           </Link>
         </div>
 
@@ -40,13 +41,13 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative inline-flex items-center pb-1 text-[11px] uppercase tracking-[0.14em] text-[#485562] transition hover:text-[#111111]"
+                className="relative inline-flex items-center pb-1 text-[11px] uppercase tracking-[0.14em] text-[#485562] transition hover:text-[var(--text)] dark:text-[#C7CED9]"
                 data-magnetic="true"
               >
                 {isActive ? (
                   <motion.span
                     layoutId="nav-underline"
-                    className="absolute -bottom-[8px] left-0 right-0 h-[2px] rounded-full bg-[#6B9BC3]"
+                    className="absolute -bottom-[8px] left-0 right-0 h-[2px] rounded-full bg-[var(--accent)]"
                     transition={{ type: "spring", stiffness: 500, damping: 40 }}
                   />
                 ) : null}
@@ -58,18 +59,19 @@ export function Navbar() {
 
         <div className="flex items-center justify-end gap-2">
           {siteConfig.github ? (
-            <a href={siteConfig.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D9E3EB] bg-white/60 text-[#394551] transition hover:-translate-y-0.5 hover:text-[#111827]">
+            <a href={siteConfig.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)]/60 text-[var(--text)] transition hover:-translate-y-0.5">
               <GitHubIcon className="h-4 w-4" />
             </a>
           ) : null}
           {siteConfig.linkedin ? (
-            <a href={siteConfig.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D9E3EB] bg-white/60 text-[#394551] transition hover:-translate-y-0.5 hover:text-[#111827]">
+            <a href={siteConfig.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)]/60 text-[var(--text)] transition hover:-translate-y-0.5">
               <LinkedInIcon className="h-4 w-4" />
             </a>
           ) : null}
-          <a href={`mailto:${siteConfig.email}`} aria-label="Email" className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D9E3EB] bg-white/60 text-[#394551] transition hover:-translate-y-0.5 hover:text-[#111827]">
+          <a href={`mailto:${siteConfig.email}`} aria-label="Email" className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)]/60 text-[var(--text)] transition hover:-translate-y-0.5">
             <MailIcon className="h-4 w-4" />
           </a>
+          <ThemeToggle />
         </div>
       </div>
     </motion.nav>

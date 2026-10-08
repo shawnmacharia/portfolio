@@ -77,7 +77,7 @@ export function AlchemistOwl({ variant = "hero" }: { variant?: "hero" | "sleepin
     <motion.svg
       ref={ref}
       viewBox="0 0 480 420"
-      className="w-full max-w-[420px]"
+      className="mascot-illustration w-full max-w-[420px]"
       role="img"
       aria-label="Alchemist owl mascot transforming raw data into analytical charts"
       onPointerMove={handlePointerMove}

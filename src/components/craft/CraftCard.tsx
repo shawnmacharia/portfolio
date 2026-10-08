@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { forwardRef } from "react";
 import { motion } from "framer-motion";
 import type { CraftItem } from "@/content/craft";
@@ -9,10 +10,20 @@ const kindLabelMap = {
   onedrive: "onedrive",
   medium: "medium",
   blogspot: "blogspot",
+  "power bi": "power bi",
   none: "link coming soon",
 } as const;
 
-function CardVisual({ accent }: { accent: string }) {
+function CardVisual({ accent, cover }: { accent: string; cover?: string }) {
+  if (cover) {
+    return (
+      <div className="relative h-32 overflow-hidden rounded-[12px] border border-[#E9EEF3] bg-white">
+        <div className="absolute inset-0 bg-[var(--surface)]" />
+        <Image src={cover} alt="" fill sizes="(min-width: 1024px) 240px, 50vw" className="object-cover" />
+      </div>
+    );
+  }
+
   return (
     <div className="relative h-32 overflow-hidden rounded-[12px] border border-[#E9EEF3] bg-white">
       <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${accent}, #F8FAFC)` }} />
@@ -26,18 +37,19 @@ function CardVisual({ accent }: { accent: string }) {
 }
 
 export const CraftCard = forwardRef<HTMLDivElement, { item: CraftItem; active: boolean }>(({ item, active }, ref) => {
+  const isExternal = item.href?.startsWith("http");
   const content = (
-    <div className="group flex h-full flex-col rounded-[16px] border border-[#E3E9EF] bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]">
-      <CardVisual accent={item.accent} />
-      <div className="mt-4 flex items-center justify-between gap-2 text-[10px] uppercase tracking-[0.18em] text-[#687785]">
+    <div className="group flex h-full flex-col rounded-[16px] border border-[#E3E9EF] bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] dark:border-[var(--border)] dark:bg-[var(--surface)]">
+      <CardVisual accent={item.accent} cover={item.cover} />
+      <div className="mt-4 flex items-center justify-between gap-2 text-[10px] uppercase tracking-[0.18em] text-[#687785] dark:text-[var(--muted)]">
         <span>{kindLabelMap[item.kind]}</span>
         <span>{item.category}</span>
       </div>
-      <h3 className="mt-3 text-[1.25rem] font-light tracking-[-0.04em] text-[#1C1C1E]">{item.title}</h3>
-      <p className="mt-2 text-sm leading-6 text-[#5B6775]">{item.description}</p>
-      <div className="mt-auto pt-4 text-[10px] uppercase tracking-[0.16em] text-[#5E6D7A]">
+      <h3 className="mt-3 text-[1.25rem] font-light tracking-[-0.04em] text-[#1C1C1E] dark:text-[var(--text)]">{item.title}</h3>
+      <p className="mt-2 text-sm leading-6 text-[#5B6775] dark:text-[var(--muted)]">{item.description}</p>
+      <div className="mt-auto pt-4 text-[10px] uppercase tracking-[0.16em] text-[#5E6D7A] dark:text-[var(--muted)]">
         {item.href ? (
-          <a href={item.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 underline decoration-[#D9E4ED] underline-offset-4 hover:text-[#1C1C1E]">
+          <a href={item.href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noreferrer" : undefined} className="inline-flex items-center gap-2 underline decoration-[#D9E4ED] underline-offset-4 hover:text-[#1C1C1E] dark:hover:text-[var(--text)]">
             {item.note}
           </a>
         ) : (

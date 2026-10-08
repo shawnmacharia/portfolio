@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 :root {
   --bg: #fafafa;
   --surface: #ffffff;
@@ -10,7 +12,130 @@
   --chip-bg: #eef3f7;
   --chip-text: #5b6b7a;
   --footer-gradient: linear-gradient(to bottom, #fafafa, #ededef);
+  --ink: #1c1c1e;
+  --wash-1: #e9e9ec;
+  --wash-2: #d6d8dd;
+  --spark: #f2c879;
+  --owl-scene: #f4f7fa;
+  --owl-cloud: #e4edf4;
+  --owl-sun: #edc978;
+  --owl-moon: #f1d994;
+  --owl-star: #d1a947;
+  --owl-shadow: #d9e0e7;
+  --owl-desk: #d5dfe8;
+  --owl-desk-leg: #bdcbd8;
+  --owl-ink: #343c46;
+  --owl-base: #e1e5e9;
+  --owl-face: #f8f9fa;
+  --owl-cap: #abc7df;
+  --owl-beak: #dfad62;
+  --owl-wing: #d5dce3;
+  --owl-blanket: #bfd5e6;
+  --owl-blanket-stitch: #7d9db8;
+  --owl-lamp: #e6bd6a;
+  --owl-lamp-glow: #f5d990;
+  --owl-mug: #f7f7f5;
+  --owl-steam: #aebac5;
+  --owl-laptop: #738394;
+  --owl-screen: #f7fafc;
+  --owl-chart: #648eae;
+  --owl-bubble: #ffffff;
+  --owl-bubble-text: #343c46;
+  --owl-muted: #8c9ba8;
+  --owl-day-display: block;
+  --owl-night-display: none;
   color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  --bg: #0f0f11;
+  --surface: #17171a;
+  --border: #2a2a2e;
+  --text: #f2f2f3;
+  --muted: #9a9aa2;
+  --accent: #8db4d8;
+  --chip-bg: #1e2630;
+  --chip-text: #a9b7c6;
+  --footer-gradient: linear-gradient(to bottom, #0f0f11, #141417);
+  --ink: #e9e9ec;
+  --wash-1: #2a2b30;
+  --wash-2: #3a3c43;
+  --spark: #f2c879;
+  --owl-scene: #171b23;
+  --owl-cloud: #36404c;
+  --owl-sun: #edc978;
+  --owl-moon: #f1d994;
+  --owl-star: #e9c46b;
+  --owl-shadow: #11141a;
+  --owl-desk: #313b48;
+  --owl-desk-leg: #252e38;
+  --owl-ink: #1c222c;
+  --owl-base: #9aa8b7;
+  --owl-face: #e1e7ed;
+  --owl-cap: #769ab9;
+  --owl-beak: #dba95e;
+  --owl-wing: #8493a2;
+  --owl-blanket: #56758f;
+  --owl-blanket-stitch: #a8c1d6;
+  --owl-lamp: #d1a957;
+  --owl-lamp-glow: #e7c777;
+  --owl-mug: #c4ced7;
+  --owl-steam: #a0b0bf;
+  --owl-laptop: #65778a;
+  --owl-screen: #202a35;
+  --owl-chart: #9bc7e6;
+  --owl-bubble: #e8edf2;
+  --owl-bubble-text: #26303b;
+  --owl-muted: #b7c3ce;
+  --owl-day-display: none;
+  --owl-night-display: block;
+  color-scheme: dark;
+}
+
+html[data-theme="dark"] [class*="text-[#"] {
+  color: var(--muted) !important;
+}
+
+html[data-theme="dark"] [class*="text-[#111111]"],
+html[data-theme="dark"] [class*="text-[#1C1C1E]"],
+html[data-theme="dark"] [class*="text-[#20252B]"],
+html[data-theme="dark"] [class*="text-[#1F2730]"],
+html[data-theme="dark"] [class*="text-[#2C3641]"],
+html[data-theme="dark"] [class*="text-[#2F3942]"],
+html[data-theme="dark"] [class*="text-[#26303B]"] {
+  color: var(--text) !important;
+}
+
+html[data-theme="dark"] [class*="decoration-[#"] {
+  text-decoration-color: var(--border) !important;
+}
+
+html[data-theme="dark"] [class*="bg-[#"],
+html[data-theme="dark"] [class~="bg-white"],
+html[data-theme="dark"] [class~="bg-white/60"],
+html[data-theme="dark"] [class~="bg-white/70"],
+html[data-theme="dark"] [class~="bg-white/80"] {
+  background-color: var(--surface) !important;
+}
+
+html[data-theme="dark"] [class*="border-[#"] {
+  border-color: var(--border) !important;
+}
+
+.mascot-illustration {
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .mascot-illustration {
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.18)) brightness(1.12);
+}
+
+.owl-day {
+  display: var(--owl-day-display);
+}
+
+.owl-night {
+  display: var(--owl-night-display);
 }
 
 @theme inline {
@@ -28,6 +153,19 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition:
+    background-color 250ms ease,
+    border-color 250ms ease,
+    color 250ms ease,
+    fill 250ms ease,
+    stroke 250ms ease,
+    opacity 250ms ease;
 }
 
 body {
