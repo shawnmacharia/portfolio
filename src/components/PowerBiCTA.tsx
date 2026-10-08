@@ -2,6 +2,7 @@
 "use client";
 
 import { FaFileAlt } from "react-icons/fa";
+import { siteConfig } from "@/config/site";
 
 interface VercelWindow extends Window {
   vercelAnalytics?: {
@@ -10,9 +11,6 @@ interface VercelWindow extends Window {
 }
 
 export default function PowerBiCTA() {
-  const powerBiLink =
-    "https://1drv.ms/f/c/40f2921e93ea0d94/IgDhPu9Ej3cZRLNtBzfEFRPNAROMBjrjOSl8aMvmY60e_XU?e=G3v9vG";
-
   const handleClick = () => {
     if (
       typeof window !== "undefined" &&
@@ -34,7 +32,7 @@ export default function PowerBiCTA() {
           the button below to open the collection on OneDrive.
         </p>
         <a
-          href={powerBiLink}
+          href={siteConfig.pbixFolderUrl}
           target="_blank"
           rel="noopener noreferrer"
           onClick={handleClick}
