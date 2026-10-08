@@ -19,9 +19,9 @@ export const craftItems: CraftItem[] = [
     description: "End-to-end EPRA fuel price data engineering pipeline",
     kind: "github",
     category: "data engineering",
-    href: "",
+    href: "https://github.com/shawnmacharia/epra-fuel-data-pipeline",
     accent: "#BFD7EA",
-    note: "https://github.com/shawnmacharia/epra-fuel-data-pipeline",
+    note: "view repository ↗",
   },
   {
     id: "job-scraper",
@@ -29,9 +29,9 @@ export const craftItems: CraftItem[] = [
     description: "An ingestion pipeline that normalizes role descriptions and salary signals into a structured talent dataset.",
     kind: "github",
     category: "data engineering",
-    href: "",
+    href: "https://github.com/shawnmacharia/ai-job-search",
     accent: "#D6E8F0",
-    note: "https://github.com/shawnmacharia/ai-job-search",
+    note: "view repository ↗",
   },
 
 
