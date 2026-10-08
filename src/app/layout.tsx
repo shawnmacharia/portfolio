@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Raleway } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/chrome/Navbar";
@@ -24,6 +24,10 @@ export const metadata: Metadata = {
   title: `${siteConfig.name} | Analytics Engineer`,
   description: "Shawn Macharia Mugambi: analytics engineer, BI specialist, and data storyteller based in Nairobi.",
   metadataBase: new URL("https://www.example.com"),
+};
+
+export const viewport: Viewport = {
+  themeColor: "#FAFAFA",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

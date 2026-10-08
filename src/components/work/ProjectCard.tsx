@@ -1,8 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Chip } from "@/components/ui/Chip";
 import type { Project } from "@/content/projects";
 
-function CoverArt({ index }: { index: number }) {
+export function CoverArt({ index }: { index: number }) {
   const colors = [
     ["#D9E9F4", "#C6DBF0", "#9CB9CF"],
     ["#E9E4F2", "#D4D8F1", "#B5BBD3"],
@@ -39,30 +40,36 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="group block overflow-hidden rounded-[14px] outline-none transition focus-visible:ring-2 focus-visible:ring-[#6B9BC3] focus-visible:ring-offset-2"
+      className="group block rounded-[14px] outline-none transition focus-visible:ring-2 focus-visible:ring-[#6B9BC3] focus-visible:ring-offset-2"
       data-cursor-label="view project"
     >
-      <div className="overflow-hidden rounded-[10px] border border-[#E7E9EF] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]">
-        <div className="relative overflow-hidden">
-          <div className="transition duration-500 group-hover:scale-[1.04] group-hover:opacity-80">
-            <CoverArt index={index} />
+      <div className="rounded-[10px] border border-[#E7E9EF] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]">
+        <div className="relative aspect-[1263/725] overflow-hidden rounded-t-[10px] bg-white">
+          <div className="absolute inset-0 transition duration-500 group-hover:scale-[1.04] group-hover:opacity-80">
+            {project.cover ? (
+              <Image
+                src={project.cover.src}
+                alt={project.cover.alt}
+                fill
+                priority={index === 0}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="h-full w-full object-cover object-top"
+              />
+            ) : (
+              <CoverArt index={index} />
+            )}
           </div>
           <span className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-[#2B2F36] px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white opacity-0 transition duration-300 group-hover:opacity-100">
             view project
           </span>
         </div>
         <div className="px-4 pb-5 pt-4">
-          <div className="mb-3 flex items-center justify-between gap-3 text-[11px] uppercase tracking-[0.16em] text-[#6E7781]">
+          <div className="mb-3 flex items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-[0.16em] text-[#6E7781]">
             <span>{project.title}</span>
-            <span>
-              {project.status} · {project.year}
-            </span>
           </div>
-          <h3 className="text-[clamp(1.5rem,2vw,2rem)] font-light tracking-[-0.05em] text-[#1C1C1E]">{project.title}</h3>
+          <h3 className="text-[clamp(1.5rem,2vw,2rem)] font-light tracking-[-0.05em] text-[#1C1C1E]">{project.cardTitle}</h3>
           <div className="mt-4 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <Chip key={tag}>{tag}</Chip>
-            ))}
+            <Chip>power bi</Chip>
           </div>
         </div>
       </div>

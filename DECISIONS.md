@@ -2,3 +2,8 @@
 2026-10-07: Kept the LinkedIn URL intentionally empty to preserve the design requirement to hide the icon until the human fills it in.
 2026-10-07: Used generated SVG-based covers, mascot art, and placeholder portrait styling instead of binary assets so the site remains self-contained and deployable without local images.
 2026-10-07: Timeline start date for Data Cycle Analytics kept as 2026–PRESENT; human's handwritten annotation may have read 2022. Change it in `src/content/timeline.ts` if wrong.
+2026-10-07: Kept the five previous work entries in the project data but unpublished them; the work grid, case-study routes, previous/next links, and sitemap now use one published-project selector.
+2026-10-07: Matched the CRM, market, and hiring overview screenshots by explicit filenames and verified dimensions; originals are below 3 MB and need no rename or optimization.
+2026-10-07: Replaced the retired Before & After comparison with the six requested typed-content case-study sections and use the full-page supplied screenshots as detail previews.
+2026-10-07: The provided OneDrive `onedrive.live.com/my?id=...` URL is an owner-view link and will normally require visitors to sign in; replace the single `pbixFolderUrl` value with an "Anyone with the link can view" share URL for public access.
+2026-10-07: Use the same simple geometric owl in SVG, generated 16/32/48px ICO, and Apple touch icon to replace the framework's default browser icon.

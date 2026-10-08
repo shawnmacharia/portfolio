@@ -3,13 +3,13 @@
 import { useState } from "react";
 import { CheckIcon, CopyIcon } from "@/components/ui/Icons";
 
-export function CodeBlock({ code }: { code: string }) {
+export function CodeBlock({ code, label = "simplified for illustration" }: { code: string; label?: string }) {
   const [copied, setCopied] = useState(false);
 
   return (
     <div className="overflow-hidden rounded-[20px] border border-[#E7EDF4] bg-[#F5F8FB] p-4">
       <div className="mb-3 flex items-center justify-between">
-        <p className="text-[11px] uppercase tracking-[0.16em] text-[#62717C]">simplified for illustration</p>
+        <p className="text-[11px] uppercase tracking-[0.16em] text-[#62717C]">{label}</p>
         <button
           type="button"
           onClick={async () => {
